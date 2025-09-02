@@ -1,0 +1,96 @@
+🛒 Sales Management with SQL + Python
+
+This mini project combines **SQL Server** and **Python (PyODBC + Pandas + Matplotlib)** to design a sales management database, insert data, run queries, and visualize insights.  
+
+It demonstrates an **end-to-end data pipeline**:  
+1. Database design in SQL (schema, inserts, views, procedures).  
+2. Python integration via PyODBC to query the database.  
+3. Business analysis with Pandas.  
+4. Visualizations with Matplotlib.  
+5. Presentation of results for stakeholders.  
+
+---
+
+## 📂 Project Structure
+sales-management-sql-python/
+├── sales_management.sql # SQL schema (tables, views, procedure, function, inserts)
+├── Pythontosql.ipynb # Jupyter Notebook (Python queries + visualizations)
+├── Lab3_Presentation.pptx # Presentation slides
+└── README.md # Project description
+
+
+---
+
+## 🗄 Database Design
+The database includes five main tables:
+- **SalesPerson** → sales staff info  
+- **State** → list of U.S. states  
+- **Customer** → customer profiles with state relationship  
+- **Order** → customer orders + salespersons  
+- **OrderDetail** → order items, quantity, and price  
+
+Additional features:
+- Views for easier reporting (`CustomerSalesPerson`, `MostExpensiveItemByCustomer`, etc.)  
+- Function to convert USD → EUR  
+- Stored procedure to insert new salespersons  
+
+---
+
+## 🐍 Python Integration
+Using **PyODBC**, Python connects to SQL Server and executes queries.  
+
+Example: **Sales by Customer**
+
+```python
+sales_by_customer_query = """
+SELECT 
+    Customer.CustomerName, 
+    SUM(OrderDetail.Price * OrderDetail.Quantity) AS TotalSales
+FROM 
+    Customer
+JOIN [Order] ON Customer.CustomerID = [Order].CustomerID
+JOIN OrderDetail ON [Order].OrderNumber = OrderDetail.OrderNumber
+GROUP BY Customer.CustomerName
+ORDER BY TotalSales DESC
+"""
+sales_by_customer_df = pd.read_sql(sales_by_customer_query, connection)
+📊 Visualizations
+Sales by Customer
+Horizontal bar chart of top customers
+
+Color-coded by sales value
+
+Sales by State
+Vertical bar chart of total sales per U.S. state
+
+Shows strongest markets geographically
+
+📑 Insights
+SQL joins + aggregations provide business-ready metrics.
+
+Python extends SQL with visualization + reporting.
+
+Data pipeline mirrors real-world BI workflows.
+
+Slides summarize insights for stakeholders.
+
+🚀 Skills Demonstrated
+SQL Server: schema design, views, function, procedure
+
+Python: database connection, Pandas, data analysis
+
+Matplotlib: business visualizations
+
+Data storytelling: turning queries into insights
+
+🔗 Resources
+📂 SQL schema → sales_management.sql
+
+🐍 Notebook → Pythontosql.ipynb
+
+📑 Slides → Lab3_Presentation.pptx
+
+✍️ Author
+Kamran Suleyman
+Graduate Student – Saint Louis University
+Course: IS-5100 Information Retrieval

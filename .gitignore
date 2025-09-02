@@ -1,0 +1,32 @@
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# IDE configs (optional, but nice to exclude)
+.vscode/
+.idea/
+*.code-workspace
+
+# Large data (optional)
+*.zip
+*.tar
+*.gz
